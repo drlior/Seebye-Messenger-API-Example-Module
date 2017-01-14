@@ -1,9 +1,16 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
+        'org.springframework.android:spring-android-rest-template:2.0.0.M3'
+        'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+        'com.fasterxml.jackson.core:jackson-databind:2.3.2'
     }
 }
 
@@ -59,4 +66,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile project(':seebyemessengerapicommunication')
+
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }

@@ -78,6 +78,20 @@
 			android:layout_weight=".3"
 			android:text="@string/countmessages"/>
 
+		<Button
+			android:text="Start"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/startservice"
+			android:layout_weight=".3" />
+
+		<Button
+			android:text="Stop"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/endservice"
+			android:layout_weight=".3" />
+
 	</LinearLayout>
 
 	<ListView
