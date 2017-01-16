@@ -1,25 +1,17 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url 'https://repo.spring.io/libs-milestone'
-        }
-
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
-        'org.springframework.android:spring-android-rest-template:2.0.0.M3'
-        'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
-        'com.fasterxml.jackson.core:jackson-databind:2.3.2'
+        //'org.springframework.android:spring-android-rest-template:2.0.0.M3'
+        //'com.fasterxml.jackson.core:jackson-databind:2.3.2'
     }
 }
-
 apply plugin: 'com.android.application'
-
 android {
-    compileSdkVersion 22
-    buildToolsVersion "21.1.2"
-
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
     /**
      * Looking for Permission
      */
@@ -27,32 +19,28 @@ android {
     def manifestConstantsFile = file(project(':').getProjectDir().getPath() + "/Seebye-Messenger-API/manifestConstants.txt")
     def PERMISSION_MESSENGERAPI = ""
     def ACTION_MESSENGERAPI = ""
-    if (manifestConstantsFile.canRead())
-    {
+    if (manifestConstantsFile.canRead()) {
         def Properties props = new Properties()
 
         props.load(new FileInputStream(manifestConstantsFile))
 
         PERMISSION_MESSENGERAPI = props['PERMISSION_MESSENGERAPI']
         ACTION_MESSENGERAPI = props['ACTION_MESSENGERAPI']
-    }
-    else
-    {
+    } else {
         throw new GradleException("Could not read manifestConstants.txt!")
     }
-
     defaultConfig {
         applicationId "com.seebye.messengerapi.examplemodul"
-        minSdkVersion 18
-        targetSdkVersion 22
+        minSdkVersion 25
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         debug
-        {
-            manifestPlaceholders = [PERMISSION_MESSENGERAPI: PERMISSION_MESSENGERAPI, ACTION_MESSENGERAPI: ACTION_MESSENGERAPI]
-        }
+                {
+                    manifestPlaceholders = [PERMISSION_MESSENGERAPI: PERMISSION_MESSENGERAPI, ACTION_MESSENGERAPI: ACTION_MESSENGERAPI]
+                }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -60,12 +48,21 @@ android {
             manifestPlaceholders = [PERMISSION_MESSENGERAPI: PERMISSION_MESSENGERAPI, ACTION_MESSENGERAPI: ACTION_MESSENGERAPI]
         }
     }
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    //compile 'com.android.support:appcompat-v7:22.0.0'
     compile project(':seebyemessengerapicommunication')
+    compile 'com.google.android.gms:play-services-appindexing:9.8.0'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+}
 
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+repositories {
+    jcenter()
 }

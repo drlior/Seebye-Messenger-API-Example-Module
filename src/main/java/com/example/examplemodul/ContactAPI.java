@@ -5,7 +5,7 @@ package com.example.examplemodul;
  */
 
 public class ContactAPI {
-    public Integer type ;
-    public String strDisplayname ;
-    public String strIDMessenger ;
+    public String type = "NORMAL" ;
+    public String strDisplayname="" ;
+    public String strIDMessenger="" ;
 }

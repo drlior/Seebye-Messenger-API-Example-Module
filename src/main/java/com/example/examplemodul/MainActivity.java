@@ -3,9 +3,9 @@ package com.example.examplemodul;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-//import org.springframework.web.client.RestTemplate;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,6 +30,9 @@ import com.seebye.messengerapi.api.constants.MessageType;
 import com.seebye.messengerapi.api.constants.Messenger;
 import com.seebye.messengerapi.api.constants.ResponseType;
 
+//import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+//import org.springframework.web.client.RestTemplate;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -41,7 +42,6 @@ public class MainActivity extends ActionBarActivity
     private static final int RESULT_SELECT_IMAGE = 1000;
     private static final int RESULT_SELECT_AUDIO = 1001;
     private static final int RESULT_SELECT_VIDEO = 1002;
-
     private static final int RESPONSE_ACTION_ACCESS = 1000;
     private static final int RESPONSE_ACTION_CONTACTS = 1001;
     private static final int RESPONSE_ACTION_SENDMESSAGE = 1002;
@@ -181,10 +181,10 @@ public class MainActivity extends ActionBarActivity
         protected ContactAPI doInBackground(Void... params) {
             try {
                 final String url = "http://tehilim.meteor-comm.com:86/api/contacts";
-//                RestTemplate restTemplate = new RestTemplate();
-//                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-//                ContactAPI contact_api = restTemplate.getForObject(url, ContactAPI.class);
-//                return contact_api;
+                //RestTemplate restTemplate = new RestTemplate();
+                //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                //ContactAPI contact_api = restTemplate.getForObject(url, ContactAPI.class);
+                //return contact_api;
             } catch (Exception e) {
                 Log.e("MainActivity", e.getMessage(), e);
             }
