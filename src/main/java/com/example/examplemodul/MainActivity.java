@@ -24,17 +24,18 @@ import com.seebye.messengerapi.api.Contact;
 import com.seebye.messengerapi.api.Message;
 import com.seebye.messengerapi.api.MessengerAPI;
 import com.seebye.messengerapi.api.constants.Action;
+import com.seebye.messengerapi.api.constants.ContactType;
 import com.seebye.messengerapi.api.constants.ErrorCode;
 import com.seebye.messengerapi.api.constants.Extra;
 import com.seebye.messengerapi.api.constants.MessageType;
 import com.seebye.messengerapi.api.constants.Messenger;
 import com.seebye.messengerapi.api.constants.ResponseType;
 
-//import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-//import org.springframework.web.client.RestTemplate;
-
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+//import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+//import org.springframework.web.client.RestTemplate;
 
 
 public class MainActivity extends ActionBarActivity
@@ -49,9 +50,12 @@ public class MainActivity extends ActionBarActivity
     private static final int RESPONSE_ACTION_LOADMESSAGES = 1004;
     private static final int RESPONSE_ACTION_COUNTMESSAGES = 1005;
     private static final int RESPONSE_ACTION_GROUPS = 2000;
+    private static final int RESPONSE_ACTION_SYNCCONTACTS=2001;
+    private static final int RESPONSE_ACTION_SYNCGROUPS=2002;
+
 
     private ContactAdapter m_adapter;
-    private String m_strIDMessenger = null;
+    private String m_strIDMessenger = "972548396752-1441043928@g.us";;
     private EditText m_et = null;
     private Intent serviceIntent;
 
@@ -78,6 +82,8 @@ public class MainActivity extends ActionBarActivity
         findViewById(R.id.coutmessages).setOnClickListener(this);
         findViewById(R.id.startservice).setOnClickListener(this);
         findViewById(R.id.endservice).setOnClickListener(this);
+        findViewById(R.id.syncContacts).setOnClickListener(this);
+        findViewById(R.id.syncGroups).setOnClickListener(this);
         m_et = (EditText) findViewById(R.id.text);
         ListView list = ((ListView) findViewById(R.id.contacts));
         list.setAdapter(m_adapter);
@@ -98,8 +104,9 @@ public class MainActivity extends ActionBarActivity
 
 
         }
-        ApplicationTest at = new ApplicationTest();
-        at.test_ws();
+        //ApplicationTest at = new ApplicationTest();
+        //at.test_ws();
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -180,11 +187,12 @@ public class MainActivity extends ActionBarActivity
     }
 
 
+
     private class HttpRequestTask extends AsyncTask<Void, Void, ContactAPI> {
         @Override
         protected ContactAPI doInBackground(Void... params) {
             try {
-                final String url = "http://tehilim.meteor-comm.com:86/api/contacts";
+                final String url = "http://tehilim.meteor-comm.com:86/api/contacts/";
                 //RestTemplate restTemplate = new RestTemplate();
                 //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 //ContactAPI contact_api = restTemplate.getForObject(url, ContactAPI.class);
@@ -239,6 +247,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void loadMessages() {
+
         if (m_strIDMessenger == null) {
             Toast.makeText(this, R.string.err_select, Toast.LENGTH_SHORT).show();
         } else {
@@ -324,6 +333,13 @@ public class MainActivity extends ActionBarActivity
                 break;
             case R.id.startservice:
                 startService(serviceIntent);
+            case R.id.syncGroups:
+                for(int i=0;i<m_adapter.getCount();i+=1) {
+                    Contact current_contact = m_adapter.m_aContacts.get(i);
+                    if (current_contact.getType()== ContactType.GROUP) {
+                        ContactAPI.sync_with_server(current_contact);
+                    }
+                }
                 break;
             case R.id.endservice:
                 stopService(serviceIntent);
@@ -351,6 +367,8 @@ public class MainActivity extends ActionBarActivity
             case RESPONSE_ACTION_CONTACTS:
                 if (responseType == ResponseType.SUCCESS) {
                     m_adapter.update(Contact.fromBundle(extras));
+
+
                 }
                 break;
             case RESPONSE_ACTION_SENDMEDIA:

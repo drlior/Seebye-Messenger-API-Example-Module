@@ -20,12 +20,21 @@ public class ApplicationTest extends App
 
 	}
 
+    void test1(){
+
+
+
+    }
+
+
+
+
     public void test_ws() {
         try {
             RequestParams request_params = new RequestParams();
             request_params.put("type", "NORMAL");
             request_params.put("strDisplayname", "lior");
-            request_params.put("strIDMessenger", "12345");
+            request_params.put("strIDMessanger", "12345");
             ContactRestClient.get("contacts/", request_params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {

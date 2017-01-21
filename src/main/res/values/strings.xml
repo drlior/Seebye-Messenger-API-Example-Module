@@ -22,4 +22,8 @@
 	<string name="suc_send">Message sent</string>
 
 	<string name="access_denied">"So.. you don't trust me.."</string>
+	<string name="stop">Stop</string>
+	<string name="start">Start</string>
+	<string name="syncgroups">Sync Groups</string>
+	<string name="synccontacts">Sync Contacts</string>
 </resources>

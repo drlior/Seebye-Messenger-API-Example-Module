@@ -6,62 +6,69 @@
 			  tools:context=".MainActivity"
 			  android:focusable="true" android:focusableInTouchMode="true">
 
-	<RelativeLayout
+    <RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
-		<EditText
+
+        <EditText
 			android:id="@+id/text"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_toLeftOf="@+id/send"
+			android:layout_toStartOf="@+id/send"
 			android:hint="@string/message"/>
 		<Button
 			android:id="@+id/send"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/send"
-			android:layout_alignParentRight="true"/>
+			android:layout_alignParentEnd="true"/>
 	</RelativeLayout>
 
-	<LinearLayout
+    <LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
 		android:weightSum="1"
 		android:gravity="center">
 
-		<Button
-			android:id="@+id/sendimage"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight=".3"
-			android:text="@string/sendimage"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".3">
 
-		<Button
-			android:id="@+id/sendaudio"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight=".3"
-			android:text="@string/sendaudio"/>
+            <Button
+                android:id="@+id/sendvideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sendvideo"/>
 
-		<Button
-			android:id="@+id/sendvideo"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight=".3"
-			android:text="@string/sendvideo"/>
+            <Button
+                android:id="@+id/sendaudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sendaudio"/>
 
-	</LinearLayout>
+            <Button
+                android:id="@+id/sendimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sendimage"/>
+        </LinearLayout>
 
+    </LinearLayout>
 
-	<LinearLayout
+    <LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
 		android:weightSum="1"
 		android:gravity="center">
 
-		<Button
+        <Button
 			android:layout_gravity="center"
 			android:id="@+id/loadmessages"
 			android:layout_width="wrap_content"
@@ -69,8 +76,7 @@
 			android:layout_weight=".3"
 			android:text="@string/loadmsgs"/>
 
-
-		<Button
+        <Button
 			android:layout_gravity="center"
 			android:id="@+id/coutmessages"
 			android:layout_width="wrap_content"
@@ -78,23 +84,46 @@
 			android:layout_weight=".3"
 			android:text="@string/countmessages"/>
 
-		<Button
-			android:text="Start"
+        <Button
+            android:text="@string/synccontacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/syncContacts"
+            android:layout_weight=".3" />
+
+
+        <Button
+            android:text="@string/syncgroups"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/syncGroups"
+            android:layout_weight=".3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+			android:text="@string/start"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:id="@+id/startservice"
-			android:layout_weight=".3" />
+			android:layout_weight="1" />
 
-		<Button
-			android:text="Stop"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/endservice"
-			android:layout_weight=".3" />
+        <Button
 
-	</LinearLayout>
+            android:text="@string/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/endservice"
+            android:layout_weight="1" />
+    </LinearLayout>
 
-	<ListView
+
+    <ListView
 		android:id="@+id/contacts"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"/>
